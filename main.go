@@ -37,6 +37,6 @@ func main() {
 	http.HandleFunc("/", minfunc)
 	err := http.ListenAndServe("localhost:12345", nil)
 	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
+		log.Fatal(http.ListenAndServe(":12345", nil))
 	}
 }
