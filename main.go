@@ -1,12 +1,12 @@
 package main
 
 import (
-"fmt"
-"log"
-"net/http"
+	"fmt"
+	"log"
+	"net/http"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
+/* func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.URL.RawQuery)
 	fmt.Fprintf(w, `
           ##         .
@@ -18,14 +18,25 @@ func handler(w http.ResponseWriter, r *http.Request) {
  \    \         __/
   \____\_______/
 
-	
+
 Hello from Docker!
 
 `)
+} */
+
+/* func main() {
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+} */
+
+func minfunc(w http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(w, "minfunc\n")
 }
 
 func main() {
-	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	http.HandleFunc("/", minfunc)
+	err := http.ListenAndServe("localhost:12345", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
-
